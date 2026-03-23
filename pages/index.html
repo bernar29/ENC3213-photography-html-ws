@@ -5,22 +5,93 @@
   <meta charset = "UTF-8">
   <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
   <title>SP Photography???</title>
-</head>
   
-<style>
-  .myDiv {
-    border: 5px outset black;
-    background-color: silver;
-    text-align: center;
+	<style>
+	/* Reseting the default body margins so they the the edges of the screen */
+	body { 
+		margin: 0;
+		padding: 0;
+	}
+
+ 	 /* The Main Flex Container */
+ 	 .main-layout {
+		display: flex;
+		height: 100vh; /* Setting to 100 so we get 100% of the viewport height*/
+		width: 100vw; /* Same as the height */
+		overflow: hidden; /* prevents whole page from schorrliing */
+	  }
+
+	  /* Side Panel */
+	  .side-panel {
+		width: 250px;
+		flex-shrink: 0; /* Prevents sidebar from squishing together */
+		border-right: 2px solid black; /* Divides the sections */
+		padding: 15px;
+		background-color: #f4f4f4;
+		overflow-y: auto; /* Allows siderbar to scroll independetly from panel */
+	  }
+
+	  /* Main Content Area */
+	  .content {
+		flex-grow: 1; /* Takes up all remaining space */
+		paddint: 20px;
+		overflow-y: auto; /* Same as side panel */
+	  }
+
+	  /* My Custom div style */
+	  .myDiv {
+	    border: 5px outset black;
+	    background-color: silver;
+  	  text-align: center;
+	    padding: 10px;
+	    margin-bottom: 20px; /* Ades spacing between boxes */
+	  }
+  
+	  /* REmoving the deault margins from lists so that they fit well into the boxes */
+	  .myDiv ul {
+		list-style-type: none; 
+		padding: 0;
+	  }
+
+	<style>
+	  .myDiv {
+	    border: 5px outset black;
+	    background-color: silver;
+	    text-align: center;
          }
-</style>
+	</style>
+<head>
 <body>
 
-<h1>Div Element Experimentation</h1>
+	<div class="main-layout">
 
-<div class = "myDiv">
-  <h2>Rocco "the Rat" Ortiz is Gay and is short</h2>
-</div>
+	  <aside class="side-panel">
 
-</body>
+	    <div class="myDiv">
+	     <h2>Navigation</h2>
+	     <ul>
+	       <li>» Home</li> 
+	       <li>» About</li>
+	       <li>» Projects</li>
+	       <li>» Contact</li> 
+	     <ul>
+	    </div>
+
+	    <div class="myDiv">
+	     <h2>Status</h2>
+	     <p>Working on the layout!</p>
+	    </div>
+
+	  </aside>
+
+	  <main class="content">
+	     <h1>Div Element Experimentation</h1>
+
+	     <div class="myDic">
+	       <h2>Rocco "the Rat" Ortiz is Gay and short</h2>
+	     </div>
+
+	  </main>
+
+</body> 
 <html>
