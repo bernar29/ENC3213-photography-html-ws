@@ -21,36 +21,48 @@
 		overflow: hidden; /* prevents whole page from schorrliing */
 	  }
 
-	  /* Side Panel */
-	  .side-panel {
-		width: 250px;
+	  /* Left Sidebar */
+	  .left-sidebar {
+		width: 220px;
 		flex-shrink: 0; /* Prevents sidebar from squishing together */
 		border-right: 2px solid black; /* Divides the sections */
 		padding: 15px;
-		background-color: #f4f4f4;
+		background-color: transparent;
 		overflow-y: auto; /* Allows siderbar to scroll independetly from panel */
 	  }
 
-	  /* Main Content Area */
+	  /* Main Content Area MIddle Area */
 	  .content {
 		flex-grow: 1; /* Takes up all remaining space */
 		paddint: 20px;
 		overflow-y: auto; /* Same as side panel */
+    text-align: center;
 	  }
 
-	  /* My Custom div style */
+    /* Right Column for button and photos */
+    .right-column {
+    width: 220px; /* fixed width to match the left sidebar column */
+    flex-shrink: 0;
+    border-left: 2px solid black;
+    padding: 15px;
+    background-color: transparent;
+    overflow-y: auto;
+    }
+
+	  /* My box style */
 	  .myDiv {
 	    border: 5px outset black;
 	    background-color: silver;
   	  text-align: center;
 	    padding: 10px;
-	    margin-bottom: 20px; /* Ades spacing between boxes */
+	    margin-bottom: 15px; /* Ades spacing between boxes */
 	  }
   
 	  /* REmoving the deault margins from lists so that they fit well into the boxes */
 	  .myDiv ul {
 		list-style-type: none; 
 		padding: 0;
+    margin: 0;
 	  }
 
 	<style>
@@ -59,39 +71,39 @@
 	    background-color: silver;
 	    text-align: center;
          }
+
 	</style>
 <head>
 <body>
 
 	<div class="main-layout">
 
-	  <aside class="side-panel">
-
+	  <aside class="left-sidebar">
 	    <div class="myDiv">
 	     <h2>Navigation</h2>
 	     <ul>
 	       <li>» Home</li> 
-	       <li>» About</li>
 	       <li>» Projects</li>
-	       <li>» Contact</li> 
+	       <li>» Camera Gear</li>
+	       <li>» About</li>
+         <il>» Contact</il>
 	     <ul>
 	    </div>
+   </aside>
 
-	    <div class="myDiv">
-	     <h2>Status</h2>
-	     <p>Working on the layout!</p>
-	    </div>
+   <main class="content">
+     <h1>Div Element Experimentation</h1>
+     <h2>Rocco "the Rat" Ortiz is Gay and short</h2>
+     <p>(Main photo grid will go here later!)</p>            
+   </main>
 
-	  </aside>
+   <aside class="right-column">
+     <div class="myDiv">
+       <p>*Button - dark mode</p>
+     </div>
+   </aside>
 
-	  <main class="content">
-	     <h1>Div Element Experimentation</h1>
-
-	     <div class="myDic">
-	       <h2>Rocco "the Rat" Ortiz is Gay and short</h2>
-	     </div>
-
-	  </main>
+  </div>
 
 </body> 
 <html>
