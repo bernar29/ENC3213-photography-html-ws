@@ -30,6 +30,8 @@
 		padding: 15px;
 		background-color: transparent;
 		overflow-y: auto; /* Allows siderbar to scroll independetly from panel */
+    display: flex;
+    flex-direction: column;
 	  }
 
 	  /* Main Content Area MIddle Area */
@@ -52,6 +54,9 @@
 
 	  /* My box style */
 	  .myDiv {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
 	    border: 5px outset black;
 	    background-color: silver;
   	  text-align: center;
@@ -61,10 +66,30 @@
   
 	  /* REmoving the deault margins from lists so that they fit well into the boxes */
 	  .myDiv ul {
-		list-style-type: none; 
+    display: flex;
+		list-style-type: none;
 		padding: 0;
     margin: 0;
+    flex-grow: 1;
 	  }
+
+    .left-sidebar .myDiv ul{
+    flex-grow: 1; /* What actually stretches list onto the bottom of the box */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+
+    /* Attempting to add spacing to lines in the left siedebar*/
+    .left-sidebar .myDiv li{
+    font-size: 40px;
+    }
+
+    /* applying rules to .myDiv in .left-sidebar*/
+    .left-sidebar .myDiv{
+    flex-grow: 1; /* Stretches box to page*/
+    margin-bottom: 10px;
+    }
 
 	</style>
 <head>
@@ -80,7 +105,7 @@
 	       <li>» Projects</li>
 	       <li>» Camera Gear</li>
 	       <li>» About</li>
-         <il>» Contact</il>
+         <li>» Contact</li>
 	     <ul>
 	    </div>
    </aside>
