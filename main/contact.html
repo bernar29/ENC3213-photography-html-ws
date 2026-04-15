@@ -5,7 +5,7 @@
   <meta charset = "UTF-8">
   <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
   <title>Contact — SP Photography</title>
-  <link rel="stylesheet" type="text/css" href="../main/static/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
 </head>
 
 <body>
@@ -32,12 +32,34 @@
         <h2>Get in touch</h2>
         <p>Please replace these placeholders with your contact details and directions (email, phone, booking link, availability, rates, etc.).</p>
 
-        <!-- Pragmatic contact form (no backend) - user can replace action with a working endpoint -->
-        <form id="contact-form" method="post" action="#" style="display:flex; flex-direction:column; gap:8px;">
-          <label>Name<br><input type="text" name="name" placeholder="Your name" required /></label>
-          <label>Email<br><input type="email" name="email" placeholder="you@example.com" required /></label>
-          <label>Message<br><textarea name="message" rows="6" placeholder="How can I help?" required></textarea></label>
-          <button type="submit">Send</button>
+        <!-- Modern contact form: floating labels, subject, and a mail-client fallback button -->
+        <form id="contact-form" method="post" action="#">
+          <div class="form-grid">
+            <div class="form-control">
+              <input name="name" type="text" placeholder=" " required />
+              <label>Name</label>
+            </div>
+
+            <div class="form-control">
+              <input name="email" type="email" placeholder=" " required />
+              <label>Email</label>
+            </div>
+
+            <div class="form-control" style="grid-column:1 / -1;">
+              <input name="subject" type="text" placeholder=" " />
+              <label>Subject</label>
+            </div>
+
+            <div class="form-control" style="grid-column:1 / -1;">
+              <textarea name="message" rows="6" placeholder=" " required></textarea>
+              <label>Message</label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn" type="submit">Send message</button>
+              <button class="btn btn--ghost" type="button" id="contact-open-mail">Open mail client</button>
+            </div>
+          </div>
         </form>
 
         <h3>Other details</h3>
@@ -55,6 +77,6 @@
 
   </div>
 
-  <script src="../main/static/js/site.js"></script>
+  <script src="static/js/site.js"></script>
 </body>
 </html>

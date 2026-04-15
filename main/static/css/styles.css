@@ -178,6 +178,7 @@ body {
     /*object-fit: cover;*/
     /*object-position: center 50%;*/
     display: block;
+    cursor: zoom-in;
   }
 
   /* 3 shape classes for photos */
@@ -272,4 +273,164 @@ body {
   .project-link:hover img {
     filter: brightness(1.2);
     transform: scale(1.05);
+  }
+
+  /* Modern contact form styles */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .form-control {
+    position: relative;
+    display: block;
+    background: transparent;
+  }
+
+  .form-control input,
+  .form-control textarea,
+  .form-control select {
+    width: 100%;
+    padding: 14px 12px 12px 12px;
+    border: 2px solid rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.8);
+    border-radius: 8px;
+    outline: none;
+    transition: box-shadow .18s ease, transform .12s ease, border-color .12s ease;
+    font-size: 15px;
+    color: inherit;
+    resize: vertical;
+  }
+
+  .form-control label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    pointer-events: none;
+    transition: transform .16s ease, font-size .16s ease, top .16s ease;
+    color: rgba(0,0,0,0.6);
+    font-size: 14px;
+    background: transparent;
+    padding: 0 4px;
+  }
+
+  /* When input has value or focus, float the label */
+  .form-control input:focus + label,
+  .form-control textarea:focus + label,
+  .form-control input:not(:placeholder-shown) + label,
+  .form-control textarea:not(:placeholder-shown) + label,
+  .form-control.filled label {
+    transform: translateY(-22px) scale(.95);
+    font-size: 12px;
+    top: 6px;
+    color: var(--accent);
+  }
+
+  .form-control input:focus,
+  .form-control textarea:focus {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .form-actions {
+    grid-column: 1 / -1;
+    display:flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn {
+    appearance: none;
+    border: none;
+    background: var(--accent);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+
+  .btn:active { transform: translateY(1px) }
+  .btn--ghost { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,0.06); }
+
+  .form-msg { margin-top: 8px; font-weight: 600; }
+
+  .form-msg--success { color: #8fd19e; }
+  .form-msg--error { color: #ff9b9b; }
+  .form-msg--info { color: #cbd5e1; }
+
+  /* Lightbox styles */
+  .lb-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease;
+  }
+
+  .lb-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .lb-panel {
+    max-width: 96vw;
+    max-height: 92vh;
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .lb-panel img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: 4px;
+    transition: transform .18s ease;
+  }
+
+  .lb-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    cursor: button;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .lb-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    color: white;
+    text-align: left;
+    background: linear-gradient(0deg, rgba(0,0,0,0.5), transparent);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .lb-panel { width: 100vw; height: 100vh; border-radius: 0; }
   }

@@ -56,16 +56,102 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // mail-client fallback button — builds mailto from current form values
+  const mailButton = document.getElementById('contact-open-mail');
+  if (mailButton) {
+    mailButton.addEventListener('click', function () {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      const name = form.querySelector('[name="name"]').value || '';
+      const email = form.querySelector('[name="email"]').value || '';
+      const subject = form.querySelector('[name="subject"]').value || '';
+      const message = form.querySelector('[name="message"]').value || '';
+      const subjectEnc = encodeURIComponent(subject || 'Contact from ' + name);
+      const bodyEnc = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = `mailto:?subject=${subjectEnc}&body=${bodyEnc}`;
+    });
+  }
+
+  /* Floating label helper: mark filled fields */
+  (function attachFloatingLabels(){
+    const controls = document.querySelectorAll('.form-control');
+    controls.forEach(ctrl => {
+      const input = ctrl.querySelector('input, textarea, select');
+      if (!input) return;
+      const update = () => {
+        if (input.value && input.value.trim() !== '') ctrl.classList.add('filled'); else ctrl.classList.remove('filled');
+      };
+      input.addEventListener('input', update);
+      input.addEventListener('blur', update);
+      // initial
+      update();
+    });
+  })();
+
+  /* Lightbox: open image in almost-fullscreen overlay */
+  (function installLightbox(){
+    function openLightbox(src, alt){
+      // create overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'lb-overlay open';
+      overlay.tabIndex = -1;
+
+      const panel = document.createElement('div');
+      panel.className = 'lb-panel';
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt || '';
+      panel.appendChild(img);
+
+      const close = document.createElement('button');
+      close.className = 'lb-close';
+      close.innerHTML = '✕';
+      close.addEventListener('click', closeAll);
+      panel.appendChild(close);
+
+      overlay.appendChild(panel);
+
+      overlay.addEventListener('click', function(ev){
+        if (ev.target === overlay) closeAll();
+      });
+
+      document.addEventListener('keydown', onKey);
+
+      function onKey(e){ if (e.key === 'Escape') closeAll(); }
+
+      function closeAll(){
+        document.removeEventListener('keydown', onKey);
+        overlay.classList.remove('open');
+        overlay.remove();
+      }
+
+      document.body.appendChild(overlay);
+      // force a tiny scale for effect
+      requestAnimationFrame(() => { img.style.transform = 'scale(1)'; });
+    }
+
+    // delegate clicks on images inside .photo-box
+    document.addEventListener('click', function(ev){
+      const img = ev.target.closest && ev.target.closest('.photo-box img');
+      if (img) {
+        openLightbox(img.src, img.alt);
+      }
+    });
+  })();
+
   function showFormMessage(text, type) {
     let el = document.getElementById('contact-form-msg');
     if (!el) {
       el = document.createElement('div');
       el.id = 'contact-form-msg';
-      el.style.marginTop = '8px';
-      el.style.fontWeight = '600';
+      el.className = 'form-msg';
       contactForm.parentNode.insertBefore(el, contactForm.nextSibling);
     }
     el.textContent = text;
-    el.style.color = type === 'success' ? 'limegreen' : type === 'error' ? 'salmon' : 'inherit';
+    el.classList.remove('form-msg--success', 'form-msg--error', 'form-msg--info');
+    if (type === 'success') el.classList.add('form-msg--success');
+    else if (type === 'error') el.classList.add('form-msg--error');
+    else el.classList.add('form-msg--info');
   }
 });
