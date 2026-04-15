@@ -1,8 +1,8 @@
 :root{
-  --bg: #ffffff;
-  --text: #111111;
-  --panel: silver;
-  --accent: black;
+  --bg: #fdf6e3;
+  --text: #5c4b37;
+  --panel: #f5eadd;
+  --accent: #d97762;
 }
 
 html, body { height: 100%; }
@@ -57,6 +57,9 @@ body {
     padding: 20px;
     background-color: transparent;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   /* My box style */
@@ -64,8 +67,8 @@ body {
       display: flex;
       flex-grow: 1;
       flex-direction: column;
-    border: 5px outset black;
-    background-color: silver;
+    border: 2px solid var(--accent);
+    background-color: var(--panel);
     text-align: left;
     padding: 10px;
     margin-bottom: 15px; /* Ades spacing between boxes */
@@ -84,7 +87,7 @@ body {
       flex-grow: 1; /* stretch list */
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 8px;
   }
 
@@ -104,8 +107,9 @@ body {
   .left-sidebar .myDiv h2 {
     margin: 0; /* Taking away default spacing*/
     margin-bottom: 30px; /*Adding some space between header and links */
-    font-size: 40px; /* Slightly larger than links */
+    font-size: 28px; /* Slightly larger than links */
     text-decoration: underline;
+    word-wrap: break-word; /* Making sure word doesn't overflow box */
   }
 
   .right-column .myDiv{
@@ -124,11 +128,18 @@ body {
     color: white; /* flips text white */
   }
 
+/*  .right-column .myDiv:has(#dark-mode-toggle){
+    border: none;
+    background-color: transparent;
+    padding: 0;
+  }
+*/
+
   /* Grid Container for photos */
   .photo-grid {
     display: grid;
     /* creating columns that stretch if having extra room */
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr; /*repeat(2, 1fr);*/
     grid-auto-rows: 280px;
     gap: 20px; /* empty space between photos */
     margin-top: 30px;
@@ -142,12 +153,14 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    overflow: hidden;
   }
 
   .photo-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    /*object-position: center 50%;*/
     display: block;
   }
 
@@ -165,6 +178,11 @@ body {
     grid-row: span 2;
   }
 
+  .portrait {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
   .sidebar-tall {
     height: 400px;
     margin-top: 20px;
@@ -173,6 +191,11 @@ body {
 
   .content h1 {
     margin-top: 0;
+  }
+  
+  .photo-box:has(img){
+    background-color: transparent;
+    border: none;
   }
 
   /* small responsive tweak for narrow screens */
@@ -185,10 +208,50 @@ body {
   /* make links inside content readable */
   .content a { color: var(--accent); }
 
+  a {
+    color: var(--text):
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
   /* Dark mode */
   body.dark {
-    --bg: #0f1720;
-    --text: #e6eef6;
-    --panel: #1f2933;
-    --accent: #e6eef6;
+    --bg: #2d2b38; /*#0f1720*/
+    --text: #eaddf0; /*e6eef6*/
+    --panel: #3c3847; /*1f2933*/
+    --accent: #b49cc4; /*e6eef6*/
+  }
+
+  #dark-mode-toggle {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+  }
+
+  .project-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 2px solid(--accent);
+  }
+
+  .project-link img {
+    width: 100%;
+    height: 100%;
+    object-fit; cover;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3 ease;
+  }
+
+  .project-link: hover img {
+    filter: brightness(1.2);
+    transform: scale(1.05);
   }
