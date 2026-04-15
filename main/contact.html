@@ -33,7 +33,12 @@
         <p>Please replace these placeholders with your contact details and directions (email, phone, booking link, availability, rates, etc.).</p>
 
         <!-- Modern contact form: floating labels, subject, and a mail-client fallback button -->
-        <form id="contact-form" method="post" action="#">
+     <!-- To enable direct email delivery from a static site we use FormSubmit (https://formsubmit.co).
+       You will need to confirm the email address once FormSubmit sends a verification link. -->
+        <form id="contact-form" method="post" action="https://formsubmit.co/sandro.palacios@photographer.com">
+          <!-- FormSubmit hidden fields: disable captcha for testing and set a default subject -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Website contact message">
           <div class="form-grid">
             <div class="form-control">
               <input name="name" type="text" placeholder=" " required />

@@ -18,8 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (ev) {
-      ev.preventDefault();
       const action = (contactForm.getAttribute('action') || '').trim();
+      // If the action is a third-party form endpoint that expects a normal browser POST
+      // (for example FormSubmit), allow the browser to submit the form normally so the
+      // provider can handle redirects and verification flows.
+      if (action && action.includes('formsubmit.co')) {
+        // Let the browser perform the POST
+        return;
+      }
+      ev.preventDefault();
       const name = contactForm.querySelector('[name="name"]').value || '';
       const email = contactForm.querySelector('[name="email"]').value || '';
       const message = contactForm.querySelector('[name="message"]').value || '';
